@@ -8,6 +8,7 @@ app.use(express.json());
 
 const connectDB = require('./connectMongo');
 const Product = require('./models/productModel');
+const productRoute = require('./routes/productRoute');
 
 connectDB();
 
@@ -20,16 +21,7 @@ app.get('/', (req, res) => {
   res.send('welcome to the express server');
 });
 
-app.use('/products', async (req, res) => {
-  try {
-    const products = await Product.find();
-    res.send({
-      products: products,
-    });
-  } catch (error) {
-    return res.status(500).send({ message: error.message });
-  }
-});
+app.use('/products', productRoute);
 
 app.listen(PORT, () => {
   console.log('Server is running on port ' + PORT);
