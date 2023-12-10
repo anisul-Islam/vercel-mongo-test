@@ -1,3 +1,4 @@
+const { default: mongoose } = require('mongoose');
 const Product = require('../models/productModel');
 
 const getAllProducts = async (req, res) => {
@@ -24,6 +25,9 @@ const getPorduct = async (req, res) => {
       product: product,
     });
   } catch (error) {
+    if (error instanceof mongoose.Error.CastError) {
+      return res.status(500).send({ message: error.message });
+    }
     res.status(500).send({ message: error.message });
   }
 };
