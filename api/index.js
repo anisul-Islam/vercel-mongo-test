@@ -1,8 +1,8 @@
 const express = require('express');
 require('dotenv').config();
 
-const connectDB = require('./connectMongo');
-const productRoute = require('./routes/productRoute');
+const connectDB = require('../connectMongo');
+const productRoute = require('../routes/productRoute');
 
 const app = express();
 
