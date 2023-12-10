@@ -26,7 +26,7 @@ const getPorduct = async (req, res) => {
     });
   } catch (error) {
     if (error instanceof mongoose.Error.CastError) {
-      return res.status(500).send({ message: error.message });
+      return res.status(500).send({ message: 'Invalid id' });
     }
     res.status(500).send({ message: error.message });
   }
