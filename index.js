@@ -1,18 +1,14 @@
 const express = require('express');
+require('dotenv').config();
+
+const connectDB = require('./connectMongo');
+const productRoute = require('./routes/productRoute');
 
 const app = express();
 
-require('dotenv').config();
-
-app.use(express.json());
-
-const connectDB = require('./connectMongo');
-const Product = require('./models/productModel');
-const productRoute = require('./routes/productRoute');
+const PORT = process.env.PORT;
 
 connectDB();
-
-const PORT = process.env.PORT;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
